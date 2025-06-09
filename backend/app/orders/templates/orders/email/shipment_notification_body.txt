@@ -1,0 +1,31 @@
+{{ user.username }} 様  (または {{ order.shipping_full_name }} 様)
+
+この度は「お野菜マルシェ・ハーベスト」をご利用いただき、誠にありがとうございます。
+
+ご注文いただいた以下の商品を発送いたしました。
+ご注文ID: {{ order.order_id }}
+ご注文日時: {{ order.created_at|date:"Y年n月j日 H:i" }}
+
+商品到着まで今しばらくお待ちください。
+
+----------------------------------------
+ご注文商品:
+{% for item in order.items.all %}
+- {{ item.product_name }} ({{ item.price_at_purchase|floatformat:0 }}円) x {{ item.quantity }}点
+{% endfor %}
+----------------------------------------
+合計金額: {{ order.total_amount|floatformat:0 }}円 (税込・送料別)
+----------------------------------------
+
+お届け先:
+〒{{ order.shipping_postal_code }}
+{{ order.shipping_prefecture }}{{ order.shipping_city }}{{ order.shipping_address1 }}
+{{ order.shipping_address2 }}
+{{ order.shipping_full_name }} 様
+電話番号: {{ order.shipping_phone_number }}
+
+今後とも「お野菜マルシェ・ハーベスト」をよろしくお願いいたします。
+
+---
+お野菜マルシェ・ハーベスト運営
+(このメールは送信専用です)

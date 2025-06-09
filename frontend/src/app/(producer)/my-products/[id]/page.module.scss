@@ -1,0 +1,269 @@
+/* frontend/src/app/(producer)/my-products/[id]/page.module.scss */
+/* (または frontend/src/app/(producer)/products/new/page.module.scss を修正・拡張) */
+
+/* --- 基本コンテナとヘッダー --- */
+.container {
+  max-width: 900px; // 少し広めに
+  margin: 2rem auto;
+  padding: 1.5rem 2rem; // 内側余白を調整
+  background-color: #ffffff; // 背景色を白に
+  border: 1px solid #e5e7eb; // 境界線
+  border-radius: 0.75rem; // 角丸を少し大きく
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); // 影を追加
+}
+
+.pageHeader { // ページタイトルと戻るボタン用
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700; // 少し太く
+  color: #1f2937; // 濃いグレー
+}
+
+.backButton {
+  color: #4f46e5; // やや紫寄りの青
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+    background-color: #eef2ff; // ホバー時の背景
+    border-color: #c7d2fe;
+  }
+}
+
+/* --- フォーム全体 --- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // セクション間のスペースを広めに
+}
+
+/* --- 各セクション --- */
+.section {
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #f9fafb; // セクション背景を薄いグレーに (任意)
+}
+
+.sectionTitle {
+  font-size: 1.25rem; // 少し大きく
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem; // タイトル下のスペース
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #d1d5db;
+}
+
+/* --- フォームグリッド --- */
+.grid2, .grid3 { // 共通のギャップなど
+  display: grid;
+  gap: 1.5rem; // グリッド内のギャップ
+}
+.grid2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+
+/* --- フォームグループとラベル --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // ラベルと入力要素のスペースを少し広げる
+}
+
+.label {
+  font-weight: 500;
+  color: #374151; // やや濃いグレー
+  font-size: 0.9rem;
+  // 必須マーク用のスタイル (label の後に必須マークの span を置く場合)
+  .requiredMark {
+    color: #ef4444; // 赤色
+    margin-left: 0.25rem;
+  }
+}
+
+/* --- 入力要素 --- */
+.input, .textarea, .select {
+  padding: 0.75rem 1rem; // パディングを調整
+  border: 1px solid #d1d5db; // ボーダー色を調整
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    outline: none; // デフォルトのアウトラインを消す
+    border-color: #4f46e5; // フォーカス時のボーダー色
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); // フォーカスリング
+  }
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* --- 画像セクション --- */
+.imageSection { /* .section を流用しても良い */
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.imageLabel { /* .label を流用 */
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.9rem;
+  margin-bottom: 1rem; // プレビューとの間隔
+}
+
+.imagePreviewContainer {
+  display: flex;
+  align-items: flex-start; // 上揃え
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.profileImage { // 既存画像/プレビュー画像
+  width: 150px; // 少し大きく
+  height: 150px;
+  border-radius: 0.5rem; // 角丸に
+  border: 1px solid #e5e7eb;
+  object-fit: cover; // 画像をカバー表示
+}
+
+.noImagePreview {
+  width: 150px;
+  height: 150px;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.imageInputControls { // ボタン類をまとめるコンテナ
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start; // ボタンを左揃え
+}
+
+.imageInput { display: none; }
+
+.imageChangeButton, .imageDeleteButton {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex; // アイコンとテキストを並べる場合
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+  }
+  // アイコン用のスタイル (例: Heroicons を使う場合)
+  // .icon { width: 1rem; height: 1rem; }
+}
+
+.imageDeleteButton {
+  border-color: #fca5a5;
+  color: #b91c1c;
+  &:hover { background-color: #fee2e2; }
+}
+
+.fileName {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+
+/* --- チェックボックス --- */
+.formGroupCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0; // 上下にも少し余白
+}
+.checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #4f46e5; // チェック時の色
+  cursor: pointer;
+}
+.labelCheckbox {
+  font-weight: normal;
+  color: #374151;
+  cursor: pointer;
+}
+.disabledLabel { // disabled なチェックボックスのラベル
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+
+/* --- 送信ボタン --- */
+.submitButton {
+  background-color: #4f46e5; // メインカラー
+  color: white;
+  font-weight: 600; // 少し太く
+  padding: 0.8rem 2rem; // 少し大きめに
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  align-self: flex-end; // 右寄せにする場合
+
+  &:hover {
+    background-color: #4338ca; // 少し暗い色
+  }
+
+  &:disabled {
+    background-color: #a5b4fc; // 無効時の色
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+/* --- エラーメッセージ --- */
+.errorText {
+    color: #dc2626; // 赤色
+    font-size: 0.8rem; // 少し小さく
+    margin-top: 0.25rem;
+}
+
+.errorTextOverall {
+  color: #ef4444;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  margin-top: 1rem;
+}

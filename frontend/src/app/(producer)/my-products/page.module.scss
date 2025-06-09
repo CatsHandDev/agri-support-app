@@ -1,0 +1,217 @@
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.addButton {
+  background-color: #16a34a;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #15803d;
+  }
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.productItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: .5rem;
+  background-color: white;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "img info"
+      "status actions";
+    gap: 0.5rem 1rem;
+  }
+}
+
+.productItemWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.productImage {
+  grid-area: img;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.noImage {
+  width: 80px;
+  height: 80px;
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.productInfo {
+  grid-area: info;
+}
+
+.productNameLink {
+  font-weight: 600;
+  color: #1f2937;
+  text-decoration: none;
+  &:hover {
+      text-decoration: underline;
+  }
+}
+
+.productPrice {
+  color: #4b5563;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.productStatus {
+  grid-area: status;
+
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
+  }
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+
+  // 各ステータスの色
+  &.statusActive { background-color: #dcfce7; color: #166534; } // green
+  &.statusDraft { background-color: #f3f4f6; color: #4b5563; } // gray
+  &.statusPending { background-color: #fef3c7; color: #92400e; } // yellow/amber
+  &.statusInactive { background-color: #fee2e2; color: #991b1b; } // red
+}
+
+.productActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  @media (max-width: 768px) {
+    justify-self: end;
+    margin-top: 0.5rem;
+  }
+}
+
+.actionButton {
+  width: calc((100% - 1rem) / 3);
+  height: fit-content;
+  padding: .5rem;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  text-align: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-wrap: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+      background-color: #f9fafb;
+  }
+}
+
+.deleteButton {
+  border-color: #fca5a5;
+  color: #b91c1c;
+  &:hover {
+    background-color: #fee2e2;
+  }
+}
+
+.itemLoading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: rgba(255,255,255,0.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.activateButton {
+  border-color: #16a34a;
+  color: #16a34a;
+
+  &:hover {
+    background-color: #dcfce7;
+  }
+
+}
+.deactivateButton {
+  border-color: #f59e0b;
+  color: #b45309;
+
+  &:hover {
+    background-color: #fef3c7;
+  }
+}
+
+.unitInfo {
+  font-size: 0.8em;
+  color: #6b7280;
+  margin-left: 0.3em;
+}
+
+.productMeta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
