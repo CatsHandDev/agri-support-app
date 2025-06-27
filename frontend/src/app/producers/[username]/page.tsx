@@ -68,8 +68,8 @@ export default function ProducerDetailPage() {
       getProducts(productFilters)
         .then(response => {
           // ★ API レスポンス形式に合わせて調整
-          const results = response.results ?? (response as unknown as Product[]);
-          const count = response.count ?? results.length;
+          const results = response;
+          const count = results.length;
           setProducts(results);
           setTotalProducts(count);
         })

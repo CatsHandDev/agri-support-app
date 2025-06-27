@@ -1,7 +1,7 @@
 // frontend/src/app/products/page.tsx
 'use client';
 
-import React, { useState, useEffect, ChangeEvent, useCallback, useRef } from 'react';
+import React, { useState, useEffect, ChangeEvent, useCallback, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -54,7 +54,7 @@ const getInitialFilters = (searchParams: URLSearchParams | null): ProductApiFilt
   };
 };
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const { isAuthenticated, isProducer } = useAuth(); // 任意で使用
   const [products, setProducts] = useState<Product[]>([]); // 表示する商品リスト
   const [isLoading, setIsLoading] = useState(true);
@@ -375,5 +375,13 @@ export default function ProductsPage() {
         </Box>
       )}
     </Container>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div>Loading products...</div>}>
+      <ProductsPageContent />
+    </Suspense>
   );
 }

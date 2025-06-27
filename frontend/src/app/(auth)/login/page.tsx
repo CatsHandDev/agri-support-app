@@ -1,7 +1,7 @@
 // frontend/src/app/(auth)/login/page.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useSearchParams } from 'next/navigation';
 import NextLink from 'next/link';
@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import MuiLink from '@mui/material/Link';
 
-export default function LoginPage() {
+function LoginFormContent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login, isLoading, error, isAuthenticated } = useAuth();
@@ -98,6 +98,18 @@ export default function LoginPage() {
             </Grid>
           </Grid>
         </Box>
+      </Paper>
+    </Container>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Container component="main" maxWidth="xs" sx={{ mt: 8, mb: 4 }}>
+      <Paper elevation={3} sx={{ p: { xs: 2, sm: 4 }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Suspense fallback={<div>Loading form...</div>}> {/* ★ フォールバックUI */}
+          <LoginFormContent />
+        </Suspense>
       </Paper>
     </Container>
   );
